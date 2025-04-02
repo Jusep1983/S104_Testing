@@ -7,18 +7,14 @@ public class Calculator {
     public Calculator() {
     }
 
-    public static double divideNumbers(double firstNumber, double secondNumber) {
-            double result = 0;
-        try {
+    public static double divideNumbers(double firstNumber, double secondNumber)throws NotDivisibleByZero {
+            double result;
             if (secondNumber == 0) {
-                throw new NotDivisibleByZero("un número no se puede dividir entre 0 ");
+                throw new NotDivisibleByZero("un número no se puede dividir entre 0");
             } else {
                 result = firstNumber / secondNumber;
                 result = (Math.round(result * 100.0) / 100.0);
             }
-        }catch(NotDivisibleByZero e) {
-            System.out.println("Error, " + e.getMessage());
-        }
         return result;
     }
 

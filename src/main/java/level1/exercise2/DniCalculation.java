@@ -9,15 +9,18 @@ public class DniCalculation {
         ArrayList<Character> lettersDni = new ArrayList<>(Arrays.asList('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P',
                 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'));
         String dniNumberStr = String.valueOf(dniNumber);
-        char dniLetter = 0;
-        try {
+        char dniLetter;
+        int attempts = 0;
+        do {
             if (dniNumberStr.length() != 8) {
-                throw new IllegalArgumentException("el numero ha de tener 8 cifras ");
+                System.out.println("el numero ha de tener 8 cifras ");
+                dniLetter = '\0';
+                attempts++;
+            } else {
+                dniLetter = lettersDni.get(dniNumber % 23);
             }
-            dniLetter = lettersDni.get(dniNumber % 23);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error, " + e.getMessage());
-        }
+        } while ((dniNumberStr.length()) != 8 && (attempts < 3));
         return dniLetter;
+
     }
 }

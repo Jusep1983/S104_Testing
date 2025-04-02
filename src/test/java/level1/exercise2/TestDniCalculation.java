@@ -6,8 +6,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class TestDniCalculation {
 
-    DniCalculation dniCalculation;
-
     @ParameterizedTest
     @CsvSource({
             "12345678,Z",
@@ -21,8 +19,8 @@ public class TestDniCalculation {
             "11111111,H",
             "22222222,J"
     })
-    public void testDniCalculationLetter(int dniNumber, char letter) {
-        char correctLetter = DniCalculation.dniLetter(dniNumber);
+    public void testDniCalculationLetter(int dniNumber, char correctLetter) {
+        char letter = DniCalculation.dniLetter(dniNumber);
         Assertions.assertEquals(correctLetter, letter);
     }
 

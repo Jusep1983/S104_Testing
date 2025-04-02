@@ -1,6 +1,5 @@
 package level2.exercise2;
 
-import static level2.exercise2.ObjectRandom.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
