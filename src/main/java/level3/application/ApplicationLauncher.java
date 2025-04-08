@@ -1,22 +1,22 @@
-package level3.controller;
+package level3.application;
 
 import level3.exceptions.NotDivisibleByZero;
 import level3.input.KeyboardInput;
 
 import static level3.model.Calculator.*;
 
-public class RunMain {
+public class ApplicationLauncher {
 
     public static void startCalculatorApp() {
         double result = 0;
         boolean exit = false;
         char operator;
-        double firstNum = KeyboardInput.readDouble("Introduce un primer numero: ");
+        double firstNum = KeyboardInput.getDouble("Introduce un primer numero: ");
 
-        double secondNum = KeyboardInput.readDouble("Introduce un segundo numero: ");
+        double secondNum = KeyboardInput.getDouble("Introduce un segundo numero: ");
 
         do {
-            operator = KeyboardInput.readChar("""
+            operator = KeyboardInput.getChar("""
                     Elige que operación quieres hacer entre ellos:
                     / para dividir
                     * para multiplicar
