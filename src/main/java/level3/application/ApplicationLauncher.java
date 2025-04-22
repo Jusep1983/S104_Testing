@@ -1,6 +1,6 @@
 package level3.application;
 
-import level3.exceptions.NotDivisibleByZero;
+import level3.exceptions.NotDivisibleByZeroException;
 import level3.input.KeyboardInput;
 
 import static level3.model.Calculator.*;
@@ -30,7 +30,7 @@ public class ApplicationLauncher {
                     try {
                         result = divideNumbers(firstNum, secondNum);
                         exit = true;
-                    } catch (NotDivisibleByZero e) {
+                    } catch (NotDivisibleByZeroException e) {
                         System.out.println("Error, " + e.getMessage());
                         exit = true;
                     }

@@ -6,7 +6,8 @@ import level3.exceptions.InvalidCharLengthException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class KeyboardInput {
+public final class KeyboardInput {
+
     private static final Scanner SC = new Scanner(System.in);
 
     public static void numberNotEmpty(String input) throws EmptyInputException {

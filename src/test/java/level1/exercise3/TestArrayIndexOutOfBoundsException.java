@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestArrayIndexOutOfBoundsException {
-    ArrayIndexError arrayIndexError = new ArrayIndexError();
+
+    ArrayIndexError emptyArrayList = new ArrayIndexError();
 
     @Test
-    public void testArrayIndexError() {
+    public void givenEmptyArray_whenAccessingIndex_thenThrowsIndexOutOfBoundsException() {
         ArrayList<Integer> array = new ArrayList<>();
-        Executable executable = () -> arrayIndexError.arrayError(1, array);
+        Executable executable = () -> emptyArrayList.arrayError(1, array);
         assertThrows(IndexOutOfBoundsException.class, executable);
     }
 

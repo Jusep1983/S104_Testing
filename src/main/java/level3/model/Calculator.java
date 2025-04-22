@@ -1,16 +1,16 @@
 package level3.model;
 
-import level3.exceptions.NotDivisibleByZero;
+import level3.exceptions.NotDivisibleByZeroException;
 
 public class Calculator {
 
     public Calculator() {
     }
 
-    public static double divideNumbers(double firstNumber, double secondNumber)throws NotDivisibleByZero {
+    public static double divideNumbers(double firstNumber, double secondNumber)throws NotDivisibleByZeroException {
             double result;
             if (secondNumber == 0) {
-                throw new NotDivisibleByZero("un número no se puede dividir entre 0");
+                throw new NotDivisibleByZeroException("un número no se puede dividir entre 0");
             } else {
                 result = firstNumber / secondNumber;
                 result = (Math.round(result * 100.0) / 100.0);

@@ -8,7 +8,7 @@ public class TestExercise7 {
     ObjectOptional objectOptional = new ObjectOptional();
 
     @Test
-    public void objectEmptyTest() {
+    public void givenEmptyObject_whenCheckingIfObjectIsEmpty_thenReturnEmpty() {
         Assertions.assertThat(objectOptional.objectEmpty()).isEmpty();
     }
 

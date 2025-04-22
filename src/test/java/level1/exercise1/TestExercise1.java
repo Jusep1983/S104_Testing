@@ -1,84 +1,74 @@
 package level1.exercise1;
 
+import level1.exercise1.model.Book;
 import level1.exercise1.model.Library;
-
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.AssertionsKt.assertNotNull;
 
 public class TestExercise1 {
-    private static Library library = new Library();
 
+    private Library library;
 
-    @BeforeAll
-    static void iniciar() {
+    @BeforeEach
+    public void setUp() {
+        library = new Library();
         library.createSampleDataOfBooks();
+        library.addBookOnPosition(3, "PruebaPosicion");
     }
 
     @Test
-    public void listNotNull() {
+    public void givenLibrary_whenCreateSampleData_thenBooksListIsNotNullAndNotEmpty() {
         assertNotNull(library.getBooks());
         assertFalse(library.getBooks().isEmpty());
     }
 
 
     @Test
-    public void listSizeCorrect() {
-        int counter = 0;
-        for (int i = 0; i < library.getBooks().size(); i++) {
-            counter++;
-        }
-        assertEquals(counter, library.getBooks().size());
+    public void givenSampleData_whenGetBookList_thenListSizeIs8() {
+        assertEquals(8, library.getBooks().size());
     }
 
     @Test
-    public void correctPositionBook() {
-        library.addBookOnPosition(3, "PruebaPosicion");
+    public void givenBookInsertedAtPosition3_whenGetBookAtPosition3_thenReturnsExpectedTitle() {
         assertTrue(library.getBooks().get(3).getTitle().equalsIgnoreCase("PruebaPosicion"));
-        library.removeBookByTitle("PruebaPosicion");
     }
 
     @Test
-    public void noDuplicateTitles() {
-        boolean duplicate = false;
-        for (int i = 0; i < library.getBooks().size(); i++) {
-            for (int j = i + 1; j < library.getBooks().size(); j++) {
-                if ((library.getBooks().get(i)).equalsBooks(library.getBooks().get(j))) {
-                    duplicate = true;
-                }
-            }
-        }
-        assertFalse(duplicate);
+    public void givenBooksList_whenConvertToSet_thenNoDuplicateTitlesExist() {
+        List<Book> books = library.getBooks();
+        Set<Book> librosUnicos = new HashSet<>(books);
+        assertEquals(books.size(), librosUnicos.size(), "Hay libros repetidos");
     }
 
     @Test
-    public void titleByPosition() {
-        library.addBookOnPosition(1, "PruebaPosicion");
-        String title = library.getBooks().get(1).getTitle();
+    public void givenLibraryWithBookAtPosition3_whenGetTitleAtPosition3_thenReturnsCorrectTitle() {
+        String title = library.getBooks().get(3).getTitle();
         assertEquals("PruebaPosicion", title);
-        library.removeBookByTitle("PruebaPosicion");
     }
 
     @Test
-    public void listIncreases() {
+    public void givenBooksList_whenAddNewBook_thenListSizeIncreasesByOne() {
         int sizeList = library.getBooks().size();
-        library.addBook("Prueba10");
+        library.addBook("Prueba");
         assertEquals(sizeList + 1, library.getBooks().size());
-        library.removeBookByTitle("Prueba10");
     }
 
     @Test
-    public void listDecreases() {
-        library.addBook("Prueba");
+    public void givenBooksList_whenRemoveExistingBook_thenListSizeDecreasesByOne() {
         int sizeList = library.getBooks().size();
         library.removeBookByTitle("1984");
         assertEquals(sizeList - 1, library.getBooks().size());
     }
 
     @Test
-    public void listRemainSorted() {
+    public void givenSortedBooksList_whenRemoveAndAddBooks_thenListRemainsSorted() {
         library.removeBookByTitle("La Casa de los Espíritus");
         library.addBook("Em Book");
         assertEquals("1984", library.getBooks().get(0).getTitle());

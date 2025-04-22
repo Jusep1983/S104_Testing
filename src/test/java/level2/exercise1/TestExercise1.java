@@ -1,23 +1,31 @@
 package level2.exercise1;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestExercise1 {
 
-    @Test
-    public void objectRandomValuesEquals() {
-        level2.exercise1.ObjectRandom obj1 = new ObjectRandom(1);
-        level2.exercise1.ObjectRandom obj2 = new ObjectRandom(1);
-        assertThat(obj1.getIdObject()).isEqualTo(obj2.getIdObject());
+    ObjectRandom objA;
+    ObjectRandom objB;
+    ObjectRandom objC;
+
+    @BeforeEach
+    public void setUp() {
+        objA = new ObjectRandom(1);
+        objB = new ObjectRandom(1);
+        objC = new ObjectRandom(2);
     }
 
     @Test
-    public void objectRandomValuesNotEquals() {
-        level2.exercise1.ObjectRandom obj1 = new ObjectRandom(1);
-        level2.exercise1.ObjectRandom obj2 = new ObjectRandom(2);
-        assertThat(obj1.getIdObject()).isNotEqualTo(obj2.getIdObject());
+    public void givenTwoObjectsWithSameId_whenComparingIds_thenTheyAreEqual() {
+        assertThat(objA.getIdObject()).isEqualTo(objB.getIdObject());
+    }
+
+    @Test
+    public void givenTwoObjectsWithDifferentId_whenComparingIds_thenTheyAreNotEqual() {
+        assertThat(objA.getIdObject()).isNotEqualTo(objC.getIdObject());
     }
 
 }

@@ -19,7 +19,8 @@ public class TestDniCalculation {
             "11111111,H",
             "22222222,J"
     })
-    public void testDniCalculationLetter(int dniNumber, char correctLetter) {
+
+    public void givenDniNumber_whenCalculateLetter_thenReturnCorrectLetter(int dniNumber, char correctLetter) {
         char letter = DniCalculation.dniLetter(dniNumber);
         Assertions.assertEquals(correctLetter, letter);
     }
